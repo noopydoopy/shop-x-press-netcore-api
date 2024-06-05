@@ -2,9 +2,9 @@
 ShopXPress API is an example Web API using Asp.Net Core which aim to use for training for people who interesting.
 
 ## Prerequisites
-- [.Net Core 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+- [.Net 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 - [Entity Framework Core 8](https://learn.microsoft.com/en-us/ef/core/what-is-new/ef-core-8.0/whatsnew)
-- [.Net EF Core Tool](https://learn.microsoft.com/en-us/ef/core/cli/dotnet)
+- [EF Core Tool](https://learn.microsoft.com/en-us/ef/core/cli/dotnet)
 - [Docker](https://www.docker.com/products/docker-desktop/) - optional
 
 ## Development
