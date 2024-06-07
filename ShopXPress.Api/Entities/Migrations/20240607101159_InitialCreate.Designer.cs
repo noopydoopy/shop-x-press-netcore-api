@@ -12,7 +12,7 @@ using ShopXPress.Api.Entities.Database;
 namespace ShopXPress.Api.Entities.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240607094358_InitialCreate")]
+    [Migration("20240607101159_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -59,6 +59,12 @@ namespace ShopXPress.Api.Entities.Migrations
                         .HasColumnType("int");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("CartId"));
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("ProductId")
                         .HasColumnType("int");

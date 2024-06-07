@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ShopXPress.Api.Entities;
 
 [Table("Cart")]
-public class Cart
+public class Cart : BaseEntity
 {
     [Key]
     public int CartId { get; set; }

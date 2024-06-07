@@ -57,6 +57,12 @@ namespace ShopXPress.Api.Entities.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("CartId"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
