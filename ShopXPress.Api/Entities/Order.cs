@@ -12,5 +12,5 @@ public class Order : BaseEntity
     public int UserId { get; set; }
     [ForeignKey(nameof(UserId))]
     public User User { get; set; }
-    public List<Product> Products { get; set; }
+    public List<OrderProduct> OrderProducts { get; set; }
 }

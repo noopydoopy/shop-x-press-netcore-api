@@ -15,18 +15,20 @@ public class ApplicationDBContext : DbContext
     public virtual DbSet<Cart> Carts { get; set; }
     public virtual DbSet<Order> Orders { get; set; }
     public virtual DbSet<OrderPayment> OrdersPayments { get; set; }
+    public virtual DbSet<CartProduct> CartProducts{ get; set; }
+    public virtual DbSet<OrderProduct> OrderProducts{ get; set; }
     #endregion
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // TODO : Config the entities properties and relations here.
-        modelBuilder.Entity<Product>()
-            .HasMany(e => e.Carts)
-            .WithMany(e => e.Products);
+        // modelBuilder.Entity<Product>()
+        //     .HasMany(e => e.Carts)
+        //     .WithMany(e => e.Products);
 
-        modelBuilder.Entity<Product>()
-            .HasMany(e => e.Orders)
-            .WithMany(e => e.Products);
+        // modelBuilder.Entity<Product>()
+        //     .HasMany(e => e.Orders)
+        //     .WithMany(e => e.Products);
     }
 
     public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,

@@ -11,5 +11,5 @@ public class Cart
      public int UserId { get; set; }
     [ForeignKey(nameof(UserId))]
     public User User { get; set; }
-    public List<Product> Products { get; set; }
+    public List<CartProduct> CartProducts { get; set; }
 }
