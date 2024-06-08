@@ -25,7 +25,7 @@
     <Folder Include="Docker/" />
     <Folder Include="Exceptions/" />
     <Folder Include="Middlewares/" />
-    <Folder Include="Services/" />
+    <Folder Include="Utils/" />
   </ItemGroup>
 
 </Project>
