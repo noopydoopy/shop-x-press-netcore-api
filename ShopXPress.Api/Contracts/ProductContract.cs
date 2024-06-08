@@ -13,5 +13,5 @@ public class ProductContract
     public decimal Price { get; set; }
     public string? ImageUrl { get; set; }
     public int ProductCategoryId { get; set; }
-    public string ProductCategoryName { get; set; }
+    public string? ProductCategoryName { get; set; }
 }
