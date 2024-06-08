@@ -5,7 +5,7 @@ namespace ShopXPress.Api.Services.Interfaces;
 public interface IProductService
 {
     Task<List<ProductContract>> GetTopListProducts(int maxRecord);
-    Task<List<ProductContract>> GetProducts();
+    Task<List<ProductContract>> GetProducts(string? name, int? categoryId);
     Task<ProductContract> GetProductById(int productId);
     Task CreateProduct(ProductContract product);
     Task UpdateProduct(int productId, ProductContract product);

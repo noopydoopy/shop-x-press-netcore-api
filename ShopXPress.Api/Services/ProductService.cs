@@ -48,9 +48,19 @@ namespace ShopXPress.Api.Services
             return await _dbContext.Products.AsNoTracking().SelectTo<ProductContract>().FirstOrDefaultAsync(c => c.ProductId == productId);
         }
 
-        public async Task<List<ProductContract>> GetProducts()
+        public async Task<List<ProductContract>> GetProducts(string? name, int? categoryId)
         {
-            return await _dbContext.Products.AsNoTracking().SelectTo<ProductContract>().ToListAsync();
+            var query = _dbContext.Products.AsNoTracking();
+            if (!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(c => c.Name.ToLower().Contains(name.ToLower()));
+            }
+            if (categoryId.HasValue)
+            {
+                query = query.Where(c => c.ProductCategoryId == categoryId.Value);
+            }
+
+            return await query.SelectTo<ProductContract>().ToListAsync();
         }
 
         public async Task<List<ProductContract>> GetTopListProducts(int maxRecord)

@@ -27,9 +27,9 @@ namespace ShopXPress.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<List<ProductContract>> GetProducts()
+        public async Task<List<ProductContract>> GetProducts(string? name, int? categoryId)
         {
-            return await _productService.GetProducts();
+            return await _productService.GetProducts(name, categoryId);
         }
 
         [HttpGet("{productId}")]
