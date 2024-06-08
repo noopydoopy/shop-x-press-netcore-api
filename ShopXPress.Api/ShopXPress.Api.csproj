@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Docker/" />
+    <Folder Include="Entities\Migrations\" />
     <Folder Include="Exceptions/" />
     <Folder Include="Middlewares/" />
     <Folder Include="Utils/" />

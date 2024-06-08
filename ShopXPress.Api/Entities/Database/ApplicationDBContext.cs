@@ -15,8 +15,8 @@ public class ApplicationDBContext : DbContext
     public virtual DbSet<Cart> Carts { get; set; }
     public virtual DbSet<Order> Orders { get; set; }
     public virtual DbSet<OrderPayment> OrdersPayments { get; set; }
-    public virtual DbSet<CartProduct> CartProducts{ get; set; }
-    public virtual DbSet<OrderProduct> OrderProducts{ get; set; }
+    public virtual DbSet<CartProduct> CartProducts { get; set; }
+    public virtual DbSet<OrderProduct> OrderProducts { get; set; }
     #endregion
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -48,30 +48,34 @@ public class ApplicationDBContext : DbContext
     {
         foreach (var entry in ChangeTracker.Entries())
         {
-            var createdAt = entry.Property(nameof(BaseEntity.CreatedAt));
-            var modifiedAt = entry.Property(nameof(BaseEntity.ModifiedAt));
-            switch (entry.State)
+            if (entry.Entity is BaseEntity)
             {
-                case EntityState.Added when entry.Entity is BaseEntity:
+                var createdAt = entry.Property(nameof(BaseEntity.CreatedAt));
+                var modifiedAt = entry.Property(nameof(BaseEntity.ModifiedAt));
+                switch (entry.State)
+                {
+                    case EntityState.Added when entry.Entity is BaseEntity:
 
-                    if (createdAt.CurrentValue == null)
-                    {
-                        createdAt.CurrentValue = DateTime.Now;
-                    }
+                        if (createdAt.CurrentValue == null)
+                        {
+                            createdAt.CurrentValue = DateTime.Now;
+                        }
 
-                    if (modifiedAt.CurrentValue == null)
-                    {
-                        modifiedAt.CurrentValue = DateTime.Now;
-                    }
+                        if (modifiedAt.CurrentValue == null)
+                        {
+                            modifiedAt.CurrentValue = DateTime.Now;
+                        }
 
-                    break;
-                case EntityState.Modified when entry.Entity is BaseEntity:
-                    if (modifiedAt.CurrentValue == null)
-                    {
-                        modifiedAt.CurrentValue = DateTime.Now;
-                    }
-                    break;
+                        break;
+                    case EntityState.Modified when entry.Entity is BaseEntity:
+                        if (modifiedAt.CurrentValue == null)
+                        {
+                            modifiedAt.CurrentValue = DateTime.Now;
+                        }
+                        break;
+                }
             }
+
         }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using ShopXPress.Api.Contracts;
+using ShopXPress.Api.Services.Interfaces;
 using ShopXPress.Api.Settings;
 
 namespace ShopXPress.Api.Controller;
@@ -13,34 +14,18 @@ namespace ShopXPress.Api.Controller;
 [ApiController]
 public class AuthController
 {
+    private readonly IUserService _userService;
     private readonly JwtSetting _jwtSetting;
-    public AuthController(IOptions<JwtSetting> jwtSetting)
+    public AuthController(IOptions<JwtSetting> jwtSetting, IUserService userService)
     {
         _jwtSetting = jwtSetting.Value;
+        _userService = userService;
     }
 
     [HttpPost("Login")]
-    public async Task<string> Login([FromBody] LoginContract loginContract)
+    public async Task<AuthContract> Login([FromBody] LoginContract loginContract)
     {
-        if (loginContract.Email == "admin@shopexpress.com" && loginContract.Password == "1234")
-        {
-            var claims = new List<Claim> {
-                new Claim(ClaimTypes.NameIdentifier, loginContract.Email),
-                new Claim(ClaimTypes.Name, loginContract.Email),
-            };
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSetting.Secret));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
-
-            var jwtToken = new JwtSecurityToken(
-                issuer: _jwtSetting.Issuer,
-                audience: _jwtSetting.Audience,
-                claims: claims,
-                expires: DateTime.Now.AddMinutes(30),
-                signingCredentials: creds);
-
-            return new JwtSecurityTokenHandler().WriteToken(jwtToken);
-        }
-        return null;
+       return await _userService.AuthenticateUser(loginContract.Email, loginContract.Password);
     }
 
 }

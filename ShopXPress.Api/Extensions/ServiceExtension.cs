@@ -1,4 +1,7 @@
-﻿using ShopXPress.Api.Settings;
+﻿using Microsoft.Extensions.DependencyInjection;
+using ShopXPress.Api.Services;
+using ShopXPress.Api.Services.Interfaces;
+using ShopXPress.Api.Settings;
 
 namespace ShopXPress.Api.Extensions;
 
@@ -6,7 +9,9 @@ public static class ServiceExtension
 {
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
-        return services;
+        return services.AddScoped<IUserService, UserService>()
+            .AddScoped<IProductService, ProductService>()
+            .AddScoped<ICartService, CartService>();
     }
 
     public static IServiceCollection AddSettings(this IServiceCollection services, IConfiguration configuration)
