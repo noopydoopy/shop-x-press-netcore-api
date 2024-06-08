@@ -177,6 +177,9 @@ namespace ShopXPress.Api.Entities.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("longtext");
+
                     b.Property<int>("InStock")
                         .HasColumnType("int");
 

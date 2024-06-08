@@ -12,7 +12,7 @@ using ShopXPress.Api.Entities.Database;
 namespace ShopXPress.Api.Entities.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240608133817_InitialDatabase")]
+    [Migration("20240608134801_InitialDatabase")]
     partial class InitialDatabase
     {
         /// <inheritdoc />
@@ -178,6 +178,9 @@ namespace ShopXPress.Api.Entities.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ImageUrl")
                         .HasColumnType("longtext");
 
                     b.Property<int>("InStock")
