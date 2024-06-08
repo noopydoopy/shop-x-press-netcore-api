@@ -14,6 +14,7 @@ using ShopXPress.Api.Extensions;
 
 namespace ShopXPress.Api.Services;
 
+#nullable disable
 public class UserService : IUserService
 {
     private readonly ApplicationDBContext _dbContext;

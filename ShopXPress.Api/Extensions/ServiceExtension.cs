@@ -11,7 +11,8 @@ public static class ServiceExtension
     {
         return services.AddScoped<IUserService, UserService>()
             .AddScoped<IProductService, ProductService>()
-            .AddScoped<ICartService, CartService>();
+            .AddScoped<ICartService, CartService>()
+            .AddScoped<IProductCategoryService, ProductCategoryService>();
     }
 
     public static IServiceCollection AddSettings(this IServiceCollection services, IConfiguration configuration)

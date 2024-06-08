@@ -6,7 +6,7 @@ public interface IProductCategoryService
 {
     Task<List<ProductCategoryContract>> GetAllCategories();
     Task<ProductCategoryContract> GetCateGoryById(int id);
-    Task CreateCategory();
-    Task UpdateCategory();
+    Task CreateCategory(ProductCategoryContract category);
+    Task UpdateCategory(int id, ProductCategoryContract category);
     Task DeleteCategory(int id);
 }
