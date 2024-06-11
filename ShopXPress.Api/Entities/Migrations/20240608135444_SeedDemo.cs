@@ -42,7 +42,8 @@ namespace ShopXPress.Api.Entities.Migrations
                 columns: new[] { "FirstName", "LastName", "Age", "Email", "HashPassword", "UserType" },
                 values: new object[,]
                 {
-                { "Admin", "ShopXPress", 28, "admin@shopxpress.com", "aeylY50avPqYc28cmHAodpHu5375j/12kc71CzuG5o4=", 1 }
+                { "Admin", "ShopXPress", 28, "admin@shopxpress.com", "aeylY50avPqYc28cmHAodpHu5375j/12kc71CzuG5o4=", 1 },
+                { "John", "Doe", 28, "johndoe@abc.com", "aeylY50avPqYc28cmHAodpHu5375j/12kc71CzuG5o4=", 0 }
                 });
         }
 
