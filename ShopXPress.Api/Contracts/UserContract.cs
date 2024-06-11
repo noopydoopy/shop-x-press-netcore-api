@@ -1,6 +1,7 @@
 ﻿using ShopXPress.Api.Contracts.Attributes;
 using ShopXPress.Api.Entities;
 using ShopXPress.Api.Entities.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShopXPress.Api.Contracts;
 
@@ -13,4 +14,6 @@ public class UserContract
     public int Age { get; set; }
     public string Email { get; set; }
     public UserType UserType { get; set; }
+    [NotMapped]
+    public string UserTypeDescription => UserType.GetDescription();
 }
