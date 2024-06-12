@@ -5,7 +5,7 @@ using ShopXPress.Api.Entities.Database;
 namespace ShopXPress.Api;
 
 [ApiController]
-[Route("api[controller]")]
+[Route("api/[controller]")]
 public class HealthCheckController : ControllerBase
 {
     private readonly ApplicationDBContext _dbContext;
