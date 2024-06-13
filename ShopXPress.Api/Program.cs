@@ -107,9 +107,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
-app.UseAuthorization();
-
 // Enable CORS
 app.UseCors(builder =>
 {
@@ -118,6 +115,11 @@ app.UseCors(builder =>
     builder.AllowAnyMethod();
     builder.AllowAnyHeader();
 });
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+
 
 app.MapControllers();
 
