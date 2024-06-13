@@ -20,13 +20,15 @@ namespace ShopXPress.Api.Services
 
         public async Task CreateProduct(ProductContract product)
         {
-            var newProduct = new Product();
-            newProduct.ProductCategoryId = product.ProductCategoryId;
-            newProduct.Name = product.Name;
-            newProduct.Price = product.Price;
-            newProduct.ImageUrl = product.ImageUrl;
-            newProduct.InStock = product.InStock;
-            newProduct.Description = product.Description;
+            var newProduct = new Product
+            {
+                ProductCategoryId = product.ProductCategoryId,
+                Name = product.Name,
+                Price = product.Price,
+                ImageUrl = product.ImageUrl,
+                InStock = product.InStock,
+                Description = product.Description
+            };
             await _dbContext.Products.AddAsync(newProduct);
             await _dbContext.SaveChangesAsync();
         }
@@ -63,9 +65,14 @@ namespace ShopXPress.Api.Services
             return await query.SelectTo<ProductContract>().ToListAsync();
         }
 
-        public async Task<List<ProductContract>> GetTopListProducts(int maxRecord)
+        public async Task<List<ProductContract>> GetTopNewProducts(int maxRecord)
         {
             return await _dbContext.Products.AsNoTracking().Take(maxRecord).OrderByDescending(c => c.CreatedAt).SelectTo<ProductContract>().ToListAsync();
+        }
+
+        public async Task<List<ProductContract>> GetTopSpendingProducts(int maxRecord)
+        {
+            return await _dbContext.Products.AsNoTracking().Take(maxRecord).OrderByDescending(c => c.InStock).SelectTo<ProductContract>().ToListAsync();
         }
 
         public async Task UpdateProduct(int productId, ProductContract product)

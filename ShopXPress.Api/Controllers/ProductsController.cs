@@ -20,13 +20,14 @@ namespace ShopXPress.Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("TopList")]
-        public async Task<List<ProductContract>> GetTopListProducts()
+        [HttpGet("TopNew")]
+        public async Task<List<ProductContract>> GetTopNewProducts(int maxRecord = 10)
         {
-            return await _productService.GetTopListProducts(10);
+            return await _productService.GetTopNewProducts(maxRecord);
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<List<ProductContract>> GetProducts(string? name, int? categoryId)
         {
             return await _productService.GetProducts(name, categoryId);
@@ -39,21 +40,30 @@ namespace ShopXPress.Api.Controllers
         }
 
         [HttpPost("CreateProduct")]
+        [Authorize(Roles = "Admin")]
         public async Task CreateProduct([FromBody] ProductContract product)
         {
             await _productService.CreateProduct(product);
         }
 
         [HttpPut("UpdateProduct/{productId}")]
+         [Authorize(Roles = "Admin")]
         public async Task UpdateProduct([FromRoute] int productId, [FromBody] ProductContract product)
         {
             await _productService.UpdateProduct(productId, product);
         }
 
         [HttpDelete("DeleteProduct/{productId}")]
+         [Authorize(Roles = "Admin")]
         public async Task DeleteProduct([FromRoute] int productId)
         {
             await _productService.DeleteProduct(productId);
+        }
+
+        [HttpGet("TopSpending")]
+        public async Task<List<ProductContract>> GetTopSpendingProducts(int maxRecord = 10)
+        {
+            return await _productService.GetTopSpendingProducts(maxRecord);
         }
     }
 }

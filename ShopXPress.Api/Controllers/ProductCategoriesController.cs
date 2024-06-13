@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ShopXPress.Api.Contracts;
 using ShopXPress.Api.Controller;
@@ -18,7 +19,7 @@ namespace ShopXPress.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<List<ProductCategoryContract>> GetProductCateogories()
+        public async Task<List<ProductCategoryContract>> GetProductCategories()
         {
             return await _productCategoryService.GetAllCategories();
         }
@@ -30,18 +31,21 @@ namespace ShopXPress.Api.Controllers
         }
 
         [HttpDelete("{categoryId}")]
+        [Authorize(Roles = "Admin")]
         public async Task DeleteProductCategory([FromRoute] int categoryId)
         {
             await _productCategoryService.DeleteCategory(categoryId);
         }
 
-        [HttpPost("CreateProducCategory")]
-        public async Task CreateProducCategory([FromBody] ProductCategoryContract productCategoryContract)
+        [HttpPost("CreateProductCategory")]
+        [Authorize(Roles = "Admin")]
+        public async Task CreateProductCategory([FromBody] ProductCategoryContract productCategoryContract)
         {
             await _productCategoryService.CreateCategory(productCategoryContract);
         }
 
         [HttpPut("UpdateProductCategory/{categoryId}")]
+        [Authorize(Roles = "Admin")]
         public async Task UpdateProductCategory([FromRoute] int categoryId, [FromBody] ProductCategoryContract productCategoryContract)
         {
             await _productCategoryService.UpdateCategory(categoryId, productCategoryContract);

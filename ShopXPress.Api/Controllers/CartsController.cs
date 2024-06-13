@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ShopXPress.Api.Contracts;
 using ShopXPress.Api.Controller;
@@ -8,6 +9,7 @@ using ShopXPress.Api.Services.Interfaces;
 namespace ShopXPress.Api.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(Roles = "User")]
     public class CartsController : AuthorizedControllerBase
     {
         private readonly ICartService _cartService;
