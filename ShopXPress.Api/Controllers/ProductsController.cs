@@ -34,6 +34,7 @@ namespace ShopXPress.Api.Controllers
         }
 
         [HttpGet("{productId}")]
+         [AllowAnonymous]
         public async Task<ProductContract> GetProductById([FromRoute] int productId)
         {
             return await _productService.GetProductById(productId);
@@ -61,6 +62,7 @@ namespace ShopXPress.Api.Controllers
         }
 
         [HttpGet("TopSpending")]
+         [AllowAnonymous]
         public async Task<List<ProductContract>> GetTopSpendingProducts(int maxRecord = 10)
         {
             return await _productService.GetTopSpendingProducts(maxRecord);
